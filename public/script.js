@@ -29,20 +29,22 @@ navigator.mediaDevices.getUserMedia({
       connectToNewUser(userId, stream)
     }, 3000)})
 
-    let text = $("input");
-  
+    let text =document.getElementById('chat_message');
   // when press enter send message
-  $('html').keydown(function (e) {
-    if (e.which == 13 && text.val().length !== 0) {
-      socket.emit('message', text.val());
-      text.val('')
+ document.addEventListener("keydown", e => {
+     if (e.which == 13 && text.value !== "") {
+        socket.emit('message', text.value);
+        text.value="";
     }
 })
 
 socket.on("createMessage", message => {
-    console.log("op",message);
-    $('.messages').append(`<li class="message"><b>user</b><br/>${message}</li>`);
-    scrollToBottom()
+    var ul = document.getElementById("op");
+    var li = document.createElement("li");
+    li.appendChild(document.createTextNode(message));
+    ul.appendChild(li);
+
+   
   })
 
   })
@@ -71,10 +73,7 @@ socket.on("createMessage", message => {
   }
 
 
-  const scrollToBottom = () => {
-    var d = $('.main__chat_window');
-    d.scrollTop(d.prop("scrollHeight"));
-  }
+ 
 
 
   const muteUnmute = () => {
