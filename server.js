@@ -17,14 +17,17 @@ app.use('/peerjs', peerServer);
 
 app.get('/',(req,res) =>{
     res.render('home');
-    
 })
 
 app.get('/home', (req,res)=>{
-    res.redirect(`/${uuidV4()}`)
+    res.redirect(`/${uuidV4()}/home`)
 })
 
-app.get('/:room', (req, res) => {
+app.get('/:room/home', (req, res) => {
+    res.render('roomhome', { roomId: req.params.room })
+  })
+
+  app.get('/:room', (req, res) => {
     res.render('room', { roomId: req.params.room })
   })
 

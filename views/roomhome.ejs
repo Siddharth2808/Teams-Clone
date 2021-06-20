@@ -4,14 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="script2.js" defer></script>
     <title>Document</title>
 </head>
 <body>
-   
-    <a href="/home"> Create New Room </a>
-    <br>
-    <input type="text" id="text" placeholder="Join Room" />
-    <input type="button" id="btn" onClick="reply_click(this.id)" value="Submit" />
+    <h1>Room Id: <%=roomId%></h1>
+    Share your room id with your friends to let them join the room.
+    <a href="/<%=roomId%>">Video Call</a>
 </body>
 </html>
