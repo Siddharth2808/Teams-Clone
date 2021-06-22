@@ -8,10 +8,50 @@
     <title>Document</title>
 </head>
 <body>
-   
-    <a href="/home"> Create New Room </a>
+    <% if (locals.user){ %>
+   <h1>Welcome To Teams</h1>
+   <h2>Create A Team</h2>
+    <form action="/home" id="new-post-form" method="POST">
+        Room Name
+        <br>
+        <input type="text" name="name" placeholder="Your Name" required>
+        <br>
+        Password
+        <br>
+        <input type="password" name="password"  required>
+        <br>
+        Confirm Password
+        <br>
+        <input type="password" name="confirm_password"  required>
+        <br>
+        <br>
+        <input type="submit" value="Create Team">
+    </form>
     <br>
-    <input type="text" id="text" placeholder="Join Room" />
-    <input type="button" id="btn" onClick="reply_click(this.id)" value="Submit" />
+    <h2>Join A Team</h2>
+    <form action="/join" id="new-post" method="POST">
+        Team Unic Id
+        <br>
+        <input type="text" name="name" placeholder="Id" required>
+        <br>
+        Password
+        <br>
+        <input type="password" name="password"  required>
+        <br>
+        <br>
+        <input type="submit" value="Join Team">
+    </form>
+    <br><br>
+    <h3>Your Teams</h3>
+    <div class="Teams-list">
+        <ul id="Teams">
+                <% for (team of teams){%>
+                   <li>
+                    <a href="<%=team._id %>/home">  <%= team.name %> </a>
+                   </li> 
+               <%} %>
+        </ul>
+    </div>
+    <%} %>
 </body>
 </html>

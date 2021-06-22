@@ -4,11 +4,101 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/script3.js" defer></script>
     <title>Document</title>
 </head>
 <body>
-    <h1>Room Id: <%=roomId%></h1>
-    Share your room id with your friends to let them join the room.
+    <h1><%=roomop.name%></h1>
+    <h3>Room Id : <%=roomop._id%></h3>
+    <h3>Room Password : <%=roomop.password%></h3>
+    Share your room id and password with your friends to let them join the room.
     <a href="/<%=roomId%>">Video Call</a>
+    <br>
+    Memebers
+    <div class="Teams-list">
+        <ul id="Teams">
+                <% for (user of users){%>
+                   <li>
+                     <a href="/users/profile/<%= user._id%>"><%= user.name %> </a>
+                   </li> 
+               <%} %>
+        </ul>
+    </div>
+
+    <section id="feed-posts">
+      <h4>Posts</h4>
+      <% if(locals.user){ %>
+      <form action="/posts/create" id="new-post-form" method="POST">
+          <textarea name="content" cols="30" rows="3" placeholder="Type Here..." required></textarea>
+          <input type="hidden" name="room" value="<%= roomId %>" >
+          <input type="submit" value="Post">
+      </form>
+      <% } %>
+  
+      <div id="posts-list-container">
+          <ul>
+              <% for(post of posts){ %>
+                  
+               <li id="post-<%= post._id %>">
+                  <p>
+                      <% if (locals.user && (userop == post.user.id)){ %>
+                      <small>
+                          <a class="delete-post-button"  href="/posts/destroy/<%= post.id %>">X</a>
+                      </small>
+                      <% } %>
+                      <%= post.content %>
+                      <br>
+                      <small>
+                          <%= post.user.name %>
+                      </small>
+                  </p>
+                  
+                  <div class="post-comments">
+                      <% if (locals.user){ %>
+                          <!-- let's give an id to the new comment form, we'll also need to make the same changes in home_posts.js where we're adding a post to the page -->
+                          <form id="post-<%= post._id %>-comments-form" action="/comments/create" method="POST">
+                              <input type="text" name="content" placeholder="Type Here to add comment..." required>
+                              <input type="hidden" name="post" value="<%= post._id %>" >
+                              <input type="submit" value="Add Comment">
+                          </form>
+              
+                      <% } %>
+              
+                      <div class="post-comments-list">
+                          <ul id="post-comments-<%= post._id %>">
+                              <% for (comment of post.comments){%>
+              
+                                 <li id="comment-<%= comment._id %>">
+                                    <p>
+                                        <% if (locals.user && userop == comment.user.id){ %>
+                                        
+                                        <small>
+                                            <a class="delete-comment-button" href="/comments/destroy/<%= comment.id %>">X</a>
+                                        </small>
+                                        <% } %>
+                                        <%= comment.content %>
+                                        <br>
+                                        <small>
+                                            <%= comment.user.name %>
+                                        </small>
+                                    </p>    
+                            
+                            </li>
+                                  
+                              
+                              <%} %>
+                          </ul>
+                      </div>
+                  </div>
+                  
+              </li>
+                  
+              <%} %>
+          </ul>
+      </div>
+  </section>
+    
+
 </body>
 </html>
