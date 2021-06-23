@@ -1,7 +1,5 @@
 <link rel="stylesheet" href="/css/user_profile.css">
-<h1 style="color: white;">
-    Gamespace | <%= title %>
-</h1>
+<div class="main">
 <%if(user.avatar){ %>
     <img src="<%= user.avatar %>" alt="<%= user.name %>" width="100">
     <% } %>
@@ -22,5 +20,6 @@
         <input type="file" name="avatar" placeholder="Profile Picture">
         <input type="submit"  value="Update">
     </form>
+</div>
     
 

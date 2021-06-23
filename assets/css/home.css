@@ -1,0 +1,22 @@
+
+
+.main {
+  min-height: 100vh;
+  display: flex;
+}
+
+
+.main__left {
+  flex: 0.8;
+  display: flex;
+  flex-direction: column;
+  color: #D2D2D2;
+   background-color: #242324;
+}
+
+
+.main__right {
+  flex: 0.2;
+  background-color: black;
+  color: white;
+}
