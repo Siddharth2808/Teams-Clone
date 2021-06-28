@@ -1,5 +1,6 @@
 const socket = io('/');
 const videoGrid = document.getElementById('video-grid');
+
 const myVideo = document.createElement('video');
 const screenVideo = document.createElement('video');
 myVideo.muted = true;
@@ -10,7 +11,7 @@ const screenpeers ={};
 let myStream;
 
 myPeer.on('open', id => {
-    socket.emit('join-room', ROOM_ID, id);
+    socket.emit('join-room', ROOM_ID, id, userop);
 })
 
 
@@ -43,14 +44,16 @@ navigator.mediaDevices.getUserMedia({
 })
 
 
-socket.on('user-connected', userId => {
-    console.log('User connected', userId);
+socket.on('user-connected', (userId, userOp) => {
+    console.log('User connected', userId, userOp);
+    document.getElementById("ah").innerHTML=document.getElementById("ah").innerHTML+'<li>'+userOp+' (Joined)</li>';
     connectToNewUser(userId, myStream);
 })
 
 
-socket.on('user-disconnected', userId => {
+socket.on('user-disconnected', (userId, userOp) => {
     if(peers[userId]) peers[userId].close();
+    document.getElementById("ah").innerHTML=document.getElementById("ah").innerHTML+'<li>'+userOp+' (Left)</li>';
     console.log('User disconnected', userId);
 })
 
@@ -73,7 +76,6 @@ const addVideoStream = (video, stream) => {
     video.addEventListener('loadedmetadata', () => {
         video.play();
     });
-
     videoGrid.append(video);
 }
 
@@ -82,7 +84,7 @@ const addVideoStreamScreen = (video, stream) => {
     video.addEventListener('loadedmetadata', () => {
         video.play();
     })
-
+    
     myScreen.append(video);
 }
 
@@ -121,13 +123,13 @@ let msg = $('input');
 $('html').keydown((e) => {
     if(e.which == 13 && msg.val().length !== 0){
         //console.log(msg.val());
-        socket.emit('message', msg.val());
+        socket.emit('message', msg.val(),userop);
         msg.val('');
     }
 })
 
-socket.on('createMessage', message => {
-    $('ul').append(`<li class = "message"><b>user</b></br>${message}</li>`)
+socket.on('createMessage', (message,userOp) => {
+    $('ul').append(`<li class = "message"><b>${userOp}</b></br>${message}</li>`)
     scrollToBottom();
 })
 
@@ -257,10 +259,22 @@ const copier = () => {
             }, 1500);
 }
 
-const getChatop = () => {
-    gchat = 1;
+const getChatop = (now) => {
+    chat = now;
+    console.log(chat);
+    
+     if(chat==0)
+     {
+         document.getElementById("r1").style.display="flex";
+         document.getElementById("r2").style.display="none";
+     }
+    else{
+      document.getElementById("r1").style.display="none";
+         document.getElementById("r2").style.display="flex";
+    }
+    
 }
 
 const participants = () => {
-    gchat = 0; 
+    chat = 0; 
 }

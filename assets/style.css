@@ -110,6 +110,15 @@ body {
      flex-direction: column;
      background-color: #242324;
  }
+ 
+
+ #r1{
+     display: none;
+ }
+
+ #r2{
+     display: flex;
+ }
 
  .main__header {
      color: #F5F5F5;
@@ -141,3 +150,7 @@ body {
  .unmute, .stop {
     color: #cc3833;
  }
+
+ #ah{
+    color: white;
+}

@@ -62,7 +62,8 @@ router.get('/:room', (req, res) => {
       if(req.params.room==roomop) {op=1;}
     }
       if(op==1){
-      res.render('room', { roomId: req.params.room ,layout: 'room',chat: chat        })}
+        let nowop = [req.user.name];
+      res.render('room', { roomId: req.params.room ,layout: 'room',chat: chat ,userOh: req.user, joined: nowop       })}
       else res.send("Team does not exists");}
     catch(err){
       return;

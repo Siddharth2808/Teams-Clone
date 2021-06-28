@@ -71,17 +71,17 @@ app.use(passport.session());
 app.use(passport.setAuthenticatedUser);
 
   io.on('connection', socket => {
-    socket.on('join-room', (roomId, userId) => {
+    socket.on('join-room', (roomId, userId, userOp) => {
        socket.join(roomId);
-       socket.broadcast.to(roomId).emit('user-connected', userId);
+       socket.broadcast.to(roomId).emit('user-connected', userId, userOp);
        socket.on('disconnect', () => {
-        socket.broadcast.to(roomId).emit('user-disconnected', userId);
+        socket.broadcast.to(roomId).emit('user-disconnected', userId, userOp);
     })
     socket.on('screen-share', (Id) => {
         socket.broadcast.to(roomId).emit('screen-share', Id);
     })
-       socket.on('message', message=>{
-           io.to(roomId).emit('createMessage', message);
+       socket.on('message', (message, userOp)=>{
+           io.to(roomId).emit('createMessage', message, userOp);
        })
     })
   })
