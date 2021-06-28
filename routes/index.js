@@ -9,6 +9,7 @@ const path = require('path');
 const passport = require('passport');
 const homeController = require('../controller/home_controller');
 const { localsName } = require('ejs');
+let chat=0;
 
 router.get('/', homeController.home);
 
@@ -61,7 +62,7 @@ router.get('/:room', (req, res) => {
       if(req.params.room==roomop) {op=1;}
     }
       if(op==1){
-      res.render('room', { roomId: req.params.room ,layout: 'room' })}
+      res.render('room', { roomId: req.params.room ,layout: 'room',chat: chat        })}
       else res.send("Team does not exists");}
     catch(err){
       return;

@@ -3,6 +3,7 @@ const app = express()
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const cookieParser = require('cookie-parser');
+let chat = 0;
 
 const expressLayouts = require('express-ejs-layouts');
 const db = require('./config/mongoose');
@@ -73,6 +74,12 @@ app.use(passport.setAuthenticatedUser);
     socket.on('join-room', (roomId, userId) => {
        socket.join(roomId);
        socket.broadcast.to(roomId).emit('user-connected', userId);
+       socket.on('disconnect', () => {
+        socket.broadcast.to(roomId).emit('user-disconnected', userId);
+    })
+    socket.on('screen-share', (Id) => {
+        socket.broadcast.to(roomId).emit('screen-share', Id);
+    })
        socket.on('message', message=>{
            io.to(roomId).emit('createMessage', message);
        })
