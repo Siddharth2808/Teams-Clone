@@ -113,11 +113,11 @@ body {
  
 
  #r1{
-     display: none;
+     display: flex;
  }
 
  #r2{
-     display: flex;
+     display: none;
  }
 
  .main__header {
@@ -154,3 +154,6 @@ body {
  #ah{
     color: white;
 }
+
+
+

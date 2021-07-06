@@ -10,9 +10,13 @@
 </head>
 <body>
     <% if (locals.user){ %>
+        
         <div class="main">
             <div class="main__left">
-   <h1>Welcome To Teams</h1>
+                <h1 id="head2">Welcome To Teams</h1>
+                <div class="left">
+            <div class="main__left_1">
+                
    <h2>Create A Team</h2>
     <form action="/home" id="new-post-form" method="POST">
         Room Name
@@ -31,6 +35,8 @@
         <input type="submit" value="Create Team">
     </form>
     <br>
+    </div>
+    <div class="main__left_2">
     <h2>Join A Team</h2>
     <form action="/join" id="new-post" method="POST">
         Team Unic Id
@@ -46,6 +52,8 @@
     </form>
     <br><br>
     </div>
+    </div>
+</div>
     <div class="main__right">
         <h3>Your Teams</h3>
     <div class="Teams-list">
@@ -59,9 +67,30 @@
     </div>
     </div>
     </div>
+
     <%} %>
     <% if(!locals.user){ %>
-       <h2> We are delighted  you are here. Sign up with us and start enjoying full features of teams for free.</h2> 
+        <h4 id="First-line">Meet, chat, call, and collaborate in just one place.</h4>
+        <div id="home1">
+            <div id="part1">
+                <br><br><br>
+                <h1 id="Team-name">Teams Clone</h1>
+                <h2> We are delighted  you are here.</h2> 
+                <h2> Sign up with us and start enjoying full features of teams for free.</h2>
+                <div class="link-btn">
+                <a class="btn1" href="/users/sign-up">Sign Up</a>
+                <a class="btn1" href="/users/sign-in">Sign In</a>
+            </div>
+            </div>
+            <div id="part2">
+                <img src="/img/RWDeEK.webp" alt="no" id="pic1">
+            </div>
+            
+           
+        </div>
+
+
+       
     <%} %>
 </body>
 </html>

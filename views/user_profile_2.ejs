@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="/css/user_profile.css">
+<div class="main">
 <h1 style="color: white;">
-    Gamespace | <%= title %>
+     <%= title %>
 </h1>
 <% if(profile_user != undefined){ %>
 <%if(profile_user.avatar){ %>
@@ -11,5 +12,5 @@
 <p><%= profile_user.email %></p>
 
     <% } %>
-    
+</div>
 

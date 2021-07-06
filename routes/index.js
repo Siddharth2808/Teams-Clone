@@ -44,7 +44,7 @@ router.get('/:room/home', async (req, res) => {
          });
          console.log(posts);
 
-    res.render('roomhome', { roomId: req.params.room,users:users, userop:req.user._id, roomop:roomopp, posts:  posts})}
+    res.render('roomhome', { roomId: req.params.room,users:users,userOh: req.user, userop:req.user._id, roomop:roomopp, posts:  posts, layout: 'roomhome'})}
     else res.send("Team does not exists");}
   catch(err){
     return;

@@ -4,26 +4,58 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const ROOM_ID = "<%= roomId %>";
+        const userop = "<%= userOh.name %>";
+        console.log(userop);
+    </script>
+    <script defer src="https://unpkg.com/peerjs@1.2.0/dist/peerjs.min.js"></script>
+    <script src="/socket.io/socket.io.js" defer></script>
     <script src="/script3.js" defer></script>
+    <script src="https://kit.fontawesome.com/9d72c98f2c.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/roomhome.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
 <body>
+    
     <div class="main">
     <div class ="main__left">
     <div class="main__left__top">
-    <h1><%=roomop.name%></h1>
-    <h3>Team Id : <%=roomop._id%></h3>
-    <h3>Team Password : <%=roomop.password%></h3>
+    <div class="main__left__top__1">
+    <div class="details">
+    <h3><%=roomop.name%></h3>
+    <h4>Team Id &#160 : <%=roomop._id%></h4>
+    <h4>Password : <%=roomop.password%></h4>
     Share your team id and password with your friends to let them join the room.
     <hr>
-    <h3>Start a Video Call: <a href="/<%=roomId%>">Click Here</a></h3>
-    
+    </div>
+    <div class="op-list">
+    <div class="options">
+    <span> <a href="/<%=roomId%>"><i class="fas fa-video"></i> Start a Video Call</a></span>
+    </div>
+    <div class="options">
+        <span> <a href="/"><i class="fas fa-home"></i> Go back to home page</a></span>
+        </div>
+    <div onclick = "getChatop(1)" class="main__controls__button options">
+        <i class="fas fa-user-friends"></i>
+        <span>Members</span>
+    </div>
+    <div onclick = "getChatop(0)" class="main__controls__button options">
+            <i class="fas fa-comment-alt"></i>
+            <span>Chat</span>
+    </div>
+    </div>
+    </div>
     <br>
     
-
-        <h4>Posts</h4>
+     <div class="main__left__top_2">
+        <div class="main__header">
+            <h4>Posts</h4>
+        </div>
+     
       <div id="posts-list-container">
           <ul>
               <% for(post of posts){ %>
@@ -32,7 +64,7 @@
                   <p>
                       <% if (locals.user && (userop == post.user.id)){ %>
                       <small>
-                          <a class="delete-post-button"  href="/posts/destroy/<%= post.id %>">X</a>
+                          <a class="delete-post-button"  href="/posts/destroy/<%= post.id %>"><i class="far fa-trash-alt"></i></a>
                       </small>
                       <% } %>
                       <%= post.content %>
@@ -62,7 +94,8 @@
                                         <% if (locals.user && userop == comment.user.id){ %>
                                         
                                         <small>
-                                            <a class="delete-comment-button" href="/comments/destroy/<%= comment.id %>">X</a>
+                                            <a class="delete-comment-button" href="/comments/destroy/<%= comment.id %>"><i class="far fa-trash-alt"></i>
+                                                </a>
                                         </small>
                                         <% } %>
                                         <%= comment.content %>
@@ -86,19 +119,35 @@
           </ul>
         </div>
       </div>
+      </div>
       <div class="main__controls">
       <% if(locals.user){ %>
       <form action="/posts/create" id="new-post-form" method="POST">
-          <textarea name="content" cols="30" rows="3" placeholder="Type Here..." width=1000px; required></textarea>
+          <textarea name="content" cols="30" rows="3" placeholder="Type Here to Post..." width=100px; required></textarea>
           <input type="hidden" name="room" value="<%= roomId %>" >
-          <input type="submit" value="Post">
+          <input type="submit" id="post" value="Post">
       </form>
       <% } %>
     </div>
 
     </div>
-<div class="main__right">
-    Members
+
+    <div class="main__right" id="r1">
+        <div class="main__header">
+            <h4>Chat</h4>
+        </div>
+        <div class="main__chat__window">
+            <ul class="messages" id="msgs">
+
+            </ul>
+        </div>
+        <div class="main__message__container">
+            <input id="chat_message" type="text" placeholder="Type message here...">
+        </div>
+       
+ </div>
+ <div class="main__right" id="r2">
+    Members <br>
     <div class="Teams-list">
         <ul id="Teams">
                 <% for (user of users){%>
@@ -108,7 +157,7 @@
                <%} %>
         </ul>
     </div>
-</div>
+    </div>
      </div>
   </section>
 </body>

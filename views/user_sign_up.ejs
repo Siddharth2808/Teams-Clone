@@ -1,27 +1,40 @@
-<link rel="stylesheet" href="/css/user_sign_up.css">
-<section>
-<h3 style="color: white;">Register on GameSpace</h3>
-<br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   
+    <link rel="stylesheet" href="/css/user_sign_up.css">
+    <title>Sign Up</title>
+</head>
+<body>
+    <div id="op">
+    <section>
+        <h3 style="color: white;">Register on Teams</h3>
+        <br>
+        
+        <form action="/users/create" method="POST">
+            Name
+            <br>
+            <input type="text" name="name" placeholder="Your Name" required>
+            <br>
+            E-Mail
+            <br>
+            <input type="email" name="email" placeholder="abc@xyz.com" required>
+            <br>
+            Password
+            <br>
+            <input type="password" name="password"  required>
+            <br>
+            Confirm Password
+            <br>
+            <input type="password" name="confirm_password"  required>
+            <br>
+            <br>
+            <input type="submit" value="Sign Up">
+        
+        </form>  
+        </section>
+    </div>
+</body>
+</html>
 
-<form action="/users/create" method="POST">
-    Name
-    <br>
-    <input type="text" name="name" placeholder="Your Name" required>
-    <br>
-    E-Mail
-    <br>
-    <input type="email" name="email" placeholder="abc@xyz.com" required>
-    <br>
-    Password
-    <br>
-    <input type="password" name="password"  required>
-    <br>
-    Confirm Password
-    <br>
-    <input type="password" name="confirm_password"  required>
-    <br>
-    <br>
-    <input type="submit" value="Sign Up">
-
-</form> 
-</section>

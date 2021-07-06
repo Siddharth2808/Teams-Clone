@@ -1,8 +1,10 @@
-
-    
     .main {
      min-height: 90%;
       display: flex;
+    }
+
+    .options{
+      cursor: pointer;
     }
     
     
@@ -13,14 +15,34 @@
       color: #D2D2D2;
         background-color: black;
     }
-    
-    
-    .main__right {
-      flex: 0.2;
-      background-color: #1C1E20;
-      color: white;
-      border-left: 1px solid #3D3D42;
+
+    .main__left__top{
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 40px;
+      height: 600px;
+      overflow-y: scroll;
     }
+
+    .main__left__top__1{
+      display: flex;
+      flex-direction: row;
+    }
+
+    .main__left__top_2{
+      display: flex;
+      flex-direction: column;
+    }
+
+    .details{
+      flex: 0.8;
+    }
+
+    .op-list{
+      flex: 0.2;
+    }
+    
     hr{
       color: white;
       width: 10px;
@@ -36,8 +58,57 @@
       justify-content: space-between;
   }
 
-  .main__left__top{
-    flex-grow: 1;
-    padding: 40px;
-  }
-    
+textarea {
+  width: 1150px;
+  resize: none;
+}
+
+#post{
+  position: relative;
+  bottom: 8px;
+  left: 7px;
+}
+
+.main__right {
+  flex: 0.2;
+  display: flex;
+     flex-direction: column;
+     background-color: #242324;
+     color: white;
+}
+
+#r1{
+display: flex;
+}
+
+#r2{
+display: none;
+}
+
+.main__header {
+  color: #F5F5F5;
+  text-align: center;
+}
+
+.main__chat__window {
+  flex-grow: 1;
+  overflow-y: scroll;
+}
+
+.main__message__container {
+  padding: 22px 12px;
+  display: flex;
+}
+
+.main__message__container input {
+ flex-grow: 1;
+ background-color: transparent;
+ border: none;
+ color: #f5f5f5;
+}
+
+.messages {
+  color: white;
+  list-style: none;
+}
+

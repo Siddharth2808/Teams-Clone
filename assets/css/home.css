@@ -5,9 +5,37 @@
   display: flex;
 }
 
+.main__left{
+ 
+    flex: 0.8;
+    display: flex;
+    flex-direction: column;
+    color: #D2D2D2;
+     background-color: #242324;
+}
 
-.main__left {
-  flex: 0.8;
+#head2{
+  text-align: center;
+}
+
+.left {
+  min-height: 100vh;
+  display: flex;
+}
+
+
+.main__left_1 {
+  align-items: center;
+  flex: 0.5;
+  display: flex;
+  flex-direction: column;
+  color: #D2D2D2;
+   background-color: #242324;
+}
+
+.main__left_2 {
+  flex: 0.5;
+  align-items: center;
   display: flex;
   flex-direction: column;
   color: #D2D2D2;
@@ -20,3 +48,65 @@
   background-color: black;
   color: white;
 }
+
+#first-line{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  background-color: blue;
+  color: whitesmoke;
+  margin: 0px;
+}
+
+#home1{
+  display:flex;
+  background-color: rgb(248, 250, 248);
+}
+
+#part1 {
+  
+  flex: 0.5;
+  text-align: center;
+}
+
+
+#part2{
+  flex:0.5;
+}
+
+#Team-name{
+  color: blue;
+}
+
+#pic1{
+  width: 100%;
+}
+
+.link-btn {
+  display: flex;
+ 
+     color: #D2D2D2;
+     padding: 5px;
+     justify-content: center;
+     margin-top: 40px;
+}
+
+.btn1{
+  text-align: center;
+  background-color: #242324;
+  margin-left: 5%;
+  margin-right: 5%;
+  font-size: 20px;
+  border-radius: 5px; 
+  padding: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+ 
+}
+.btn1:hover {
+  background-color: #343434;
+  
+}
+
+
+
