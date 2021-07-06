@@ -53,6 +53,10 @@ router.get('/:room/home', async (req, res) => {
 else res.send("sign in to access teams");
 })
 
+router.get('/blog/homeop', (req,res) => {
+  res.send("Blogs Coming Soon");
+})
+
 router.get('/:room', (req, res) => {
   if(req.user != undefined){
     try{ 
