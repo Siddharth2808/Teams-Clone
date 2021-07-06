@@ -60,7 +60,7 @@
           <ul>
               <% for(post of posts){ %>
                   
-               <li id="post-<%= post._id %>">
+               <li id="post-<%= post._id %>" class="posts_each">
                   <p>
                       <% if (locals.user && (userop == post.user.id)){ %>
                       <small>
