@@ -6,7 +6,15 @@ myPeer.on('open', id => {
 
 socket.on('user-connected', (userId, userOp) => {
     console.log('User connected', userId, userOp);
+    let msg = userOp+" just came online";
+    socket.emit('message', msg,"Bot");
 })
+
+socket.on('user-disconnected', (userId, userOp) => {
+    let msg = userOp+" just went offline";
+    socket.emit('message', msg,"Bot");
+})
+
 
 let msg = $('#chat_message');
 $('html').keydown((e) => {
