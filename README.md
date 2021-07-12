@@ -16,10 +16,9 @@ Technologies and Languages used :
 
 
 # How to run :
-1. Download source code.
-2. Then run these commands :
-   a. npm install
-   b. nodemon server.js
+Download source code and Then run these commands :
+ 1. npm install
+ 2. nodemon server.js
 
 # Key Features:
 # A. Home Page
