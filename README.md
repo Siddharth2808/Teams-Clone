@@ -14,7 +14,12 @@ Technologies and Languages used :
 9. PerrJs
 10. MongoDB
 
-# Used agile Methedology
+
+# How to run :
+1. Download source code.
+2. Then run these commands :
+   a. npm install
+   b. nodemon server.js
 
 # Key Features:
 # A. Home Page
